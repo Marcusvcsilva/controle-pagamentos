@@ -1,9 +1,9 @@
-import os
-import sqlite3
-import requests
-from datetime import datetime
+import os                       # Para manipular o sistema de arquivos
+import sqlite3                  # Para trabalhar com banco de dados SQLite
+import requests                 # Para fazer requisições HTTP a API de câmbio
+from datetime import datetime   # Para registrar a data dos pagamentos
 
-# Garante que a pasta exista
+# Garante que a pasta exista / Cria caso não exista
 os.makedirs('data', exist_ok=True)
 
 # Conexão com o banco de dados
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS pagamentos (
 class ConversorMoeda:
     def __init__(self, base='BRL'):
         self.base = base
-
+                        # URL API
     def converter_para_brl(self, valor, moeda):
         if moeda == 'BRL':
             return valor
@@ -51,7 +51,8 @@ def cadastrar_pagamento(descricao, moeda, valor):
     conversor = ConversorMoeda()
     valor_brl = conversor.converter_para_brl(valor, moeda)
     data_atual = datetime.now().strftime('%Y-%m-%d')
-
+    
+#Inserção dos dados
     cursor.execute('''
         INSERT INTO pagamentos (descricao, moeda, valor, valor_brl, data)
         VALUES (?, ?, ?, ?, ?)
@@ -71,8 +72,8 @@ def listar_pagamentos():
 
 # Execução principal
 if __name__ == '__main__':
-    cadastrar_pagamento('Compra AWS', 'USD', 50)
-    cadastrar_pagamento('Curso online', 'EUR', 30)
+    cadastrar_pagamento('Jogo', 'USD', 50)
+    cadastrar_pagamento('Ingresso Cinema', 'USD', 10)
 
     print("\nPagamentos cadastrados:")
     listar_pagamentos()
