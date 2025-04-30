@@ -17,7 +17,7 @@ Este projeto simula um sistema de controle de pagamentos internacionais, onde ca
 ## ⚙️ Como Executar
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seuusuario/controle-pagamentos.git
+git clone https://github.com/Marcusvcsilva/controle-pagamentos.git
 cd controle-pagamentos
 
 2. Instale as dependências:
